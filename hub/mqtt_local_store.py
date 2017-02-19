@@ -64,7 +64,7 @@ def on_subscribe(client, userdata, mid, granted_qos):
 def on_message(client, userdata, msg):
     rootLogger.info(msg.topic+" "+str(msg.qos)+" "+str(msg.payload))
     # check if this is a new topic
-    if list_of_known_topics.keys().count(msg.topic) == 0:
+    if list(list_of_known_topics.keys()).count(msg.topic) == 0:
         rootLogger.info("New topic discovered. Adding {0} to list of known topics".format(msg.topic))
         # create and open a new file to store data
         f = open("feed-data/" + msg.topic.replace("/", "_") + ".txt", "a", 1)
